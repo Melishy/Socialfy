@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "socialfy",
+  "version": "${version}",
+  "name": "Socialfy",
+  "description": "Discord RPC integration on Minecraft",
+  "authors": [
+    "Melishy"
+  ],
+  "contact": {},
+  "license": "Apache-2.0",
+  "icon": "assets/socialfy/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "uk.melishy.socialfy.Socialfy"
+    ],
+    "modmenu": [
+      "uk.melishy.socialfy.integration.ModMenuIntegration"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": ">=${minecraft_version}",
+    "yet_another_config_lib_v3": ">=3.7.1+1.21.6-fabric"
+  },
+  "custom": {
+    "modmenu": {
+      "update_checker": false
+    }
+  }
+}

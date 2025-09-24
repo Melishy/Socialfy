@@ -32,6 +32,3 @@ logs/
 *.zip
 *.swp
 *.class
-
-/src/main/resources/fabric.mod.json
-/src/main
