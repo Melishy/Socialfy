@@ -24,10 +24,5 @@
     "fabric": "*",
     "minecraft": ">=${minecraft_version}",
     "yet_another_config_lib_v3": ">=3.7.1+1.21.6-fabric"
-  },
-  "custom": {
-    "modmenu": {
-      "update_checker": false
-    }
   }
 }
