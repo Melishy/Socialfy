@@ -8,7 +8,7 @@
     "Melishy"
   ],
   "contact": {},
-  "license": "Apache-2.0",
+  "license": "MIT",
   "icon": "assets/socialfy/icon.png",
   "environment": "client",
   "entrypoints": {
