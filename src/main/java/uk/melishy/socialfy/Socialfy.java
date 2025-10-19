@@ -34,8 +34,6 @@ public class Socialfy implements ClientModInitializer {
 
         boolean isRealm = serverData != null && serverData.isRealm();
 
-        SocialSDK.startRPC();
-
         int partySize = 0;
         int maxPartySize = 0;
 
@@ -48,7 +46,7 @@ public class Socialfy implements ClientModInitializer {
                 } else if (isRealm) {
                     maxPartySize = 10;
                 } else {
-                    maxPartySize = 0; // ignore the warning - this is needed to avoid silly bug lmao
+                    maxPartySize = 0;
                 }
             }
         }

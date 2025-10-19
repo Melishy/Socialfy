@@ -14,27 +14,6 @@ public class SocialSDK {
     private static Core core;
     private static Activity activity;
 
-    static {
-        startCheck();
-    }
-
-    private static void startCheck() {
-        Thread checkThread = new Thread(() -> {
-            while (true) {
-                try {
-                    synchronized (SocialSDK.class) {
-                        SocialSDK.class.wait(500);
-                    }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
-                }
-            }
-        }, "Socialfy-RPC-Check");
-        checkThread.setDaemon(true);
-        checkThread.start();
-    }
-
     public static void startRPC() {
         if (Socialfy.config == null || !Socialfy.config.enabled || core != null) return;
         params = new CreateParams();
@@ -75,16 +54,20 @@ public class SocialSDK {
 
     public static void updateActivity(Component state, String details, int partySize, int maxPartySize) {
         if (Socialfy.config == null || !Socialfy.config.enabled) return;
-        if (core == null || activity == null) startRPC();
-        if (core == null || activity == null) return;
+        if (core == null || activity == null) {
+            startRPC();
+            if (core == null || activity == null) return;
+        }
         try {
             activity.setDetails(details);
             activity.party().size().setCurrentSize(partySize);
             activity.party().size().setMaxSize(maxPartySize);
             activity.setState(state != null ? state.getString() : null);
             core.activityManager().updateActivity(activity);
+            core.runCallbacks();
         } catch (Exception e) {
             LOGGER.error("[Socialfy] Failed to update activity: {}", e.getMessage());
+            stopRPC();
         }
     }
 
@@ -96,6 +79,7 @@ public class SocialSDK {
             activity.party().size().setCurrentSize(0);
             activity.party().size().setMaxSize(0);
             core.activityManager().updateActivity(activity);
+            core.runCallbacks();
         } catch (Exception ignored) {
         }
     }
