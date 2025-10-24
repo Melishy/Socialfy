@@ -1,21 +1,33 @@
 {
   "socialfy.config.title": "Socialfy Configuration",
+
   "socialfy.config.category.general": "General",
   "socialfy.config.category.general.description": "General Discord Rich Presence settings",
+
   "socialfy.config.category.advanced": "Advanced",
   "socialfy.config.category.advanced.description": "Advanced configuration options",
+
   "socialfy.config.general.enabled": "Enable Discord Rich Presence",
   "socialfy.config.general.enabled.description": "Enable or disable Discord Rich Presence entirely",
+
+  "socialfy.config.general.reconnect": "Reconnect Discord",
+  "socialfy.config.general.reconnect.description": "Suddenly disconnected? Reconnect Discord and your presence should appear again!",
+
   "socialfy.config.general.show_state": "Show State",
   "socialfy.config.general.show_state.description": "Display current game state (Singleplayer, Multiplayer, Realm)",
+
   "socialfy.config.general.show_player_count": "Show Player Count",
   "socialfy.config.general.show_player_count.description": "Display player count and party information",
+
   "socialfy.config.general.show_server_ip": "Show Server IP",
   "socialfy.config.general.show_server_ip.description": "Display server IP address instead of generic multiplayer text",
+
   "socialfy.config.advanced.update_interval": "Update Interval",
   "socialfy.config.advanced.update_interval.description": "How often to update Discord presence (in seconds)",
+
   "socialfy.config.advanced.debug_mode": "Debug Mode",
   "socialfy.config.advanced.debug_mode.description": "Enable debug logging for troubleshooting",
+
   "socialfy.state.singleplayer": "In Singleplayer",
   "socialfy.state.realm": "In a Realm",
   "socialfy.state.realm.named": "In Realm: %s",

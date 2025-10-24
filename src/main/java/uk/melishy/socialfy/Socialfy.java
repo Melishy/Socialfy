@@ -16,7 +16,7 @@ import java.time.Instant;
 public class Socialfy implements ClientModInitializer {
     private static final Logger LOGGER = LoggerFactory.getLogger("Socialfy");
     public static Config config;
-    public static Instant launchTime = Instant.now();
+    public static final Instant launchTime = Instant.now();
     private static int tickCounter = 0;
 
     public static void updateActivitySafe() {
@@ -90,10 +90,14 @@ public class Socialfy implements ClientModInitializer {
             }
         });
 
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            LOGGER.info("[Socialfy] Shutting down");
+            SocialSDK.stopRPC();
+        }, "Socialfy-Shutdown"));
+
         if (config.enabled) {
             LOGGER.info("[Socialfy] Starting Discord RPC");
             SocialSDK.startRPC();
-            updateActivitySafe();
         } else {
             LOGGER.info("[Socialfy] Discord RPC disabled");
         }

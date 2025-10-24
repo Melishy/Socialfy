@@ -6,6 +6,7 @@ import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
+import dev.isxander.yacl3.api.ButtonOption;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import uk.melishy.discord.SocialSDK;
@@ -37,6 +38,20 @@ public class YaclConfig {
                                     Socialfy.updateActivitySafe();
                                 })
                                 .controller(opt -> BooleanControllerBuilder.create(opt).coloured(true))
+                                .build())
+
+                        .option(ButtonOption.createBuilder()
+                                .name(Component.translatable(LANG_PREFIX + "general.reconnect"))
+                                .description(OptionDescription.of(Component.translatable(LANG_PREFIX + "general.reconnect.description")))
+                                .action((yaclScreen, thisOption) -> {
+                                    Thread reconnectThread = new Thread(() -> {
+                                        try {
+                                            SocialSDK.forceReconnect();
+                                        } catch (Exception ignored) { }
+                                    }, "Socialfy-Reconnect");
+                                    reconnectThread.setDaemon(true);
+                                    reconnectThread.start();
+                                })
                                 .build())
 
                         .option(Option.<Boolean>createBuilder()
